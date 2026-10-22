@@ -15,20 +15,7 @@
   function nowDefaults() {
     var d = new Date();
     $('date').value = d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
-    setTime(pad(d.getHours()) + ':' + pad(d.getMinutes()));
-  }
-  function fillSelect(el, max) {
-    for (var i = 0; i < max; i++) {
-      var o = document.createElement('option');
-      o.value = o.textContent = pad(i);
-      el.appendChild(o);
-    }
-  }
-  function getTime() { return $('hour').value + ':' + $('min').value; }
-  function setTime(t) {
-    var p = t.split(':');
-    $('hour').value = p[0];
-    $('min').value = p[1];
+    $('time').value = pad(d.getHours()) + ':' + pad(d.getMinutes());
   }
   function level(s, d) {
     if (s >= 180 || d >= 120) return 'var(--bad)';
@@ -95,7 +82,7 @@
   $('form').addEventListener('submit', function (ev) {
     ev.preventDefault();
     var data = {
-      date: $('date').value, time: getTime(),
+      date: $('date').value, time: $('time').value,
       sys: +$('sys').value, dia: +$('dia').value, pulse: +$('pulse').value,
       note: $('note').value.trim()
     };
@@ -124,7 +111,7 @@
       var e = entries.find(function (x) { return x.id === ed; });
       if (!e) return;
       editId = ed;
-      $('date').value = e.date; setTime(e.time);
+      $('date').value = e.date; $('time').value = e.time;
       $('sys').value = e.sys; $('dia').value = e.dia; $('pulse').value = e.pulse;
       $('note').value = e.note || '';
       $('formTitle').textContent = 'Редактирование';
@@ -165,8 +152,6 @@
     r.readAsText(f);
   });
 
-  fillSelect($('hour'), 24);
-  fillSelect($('min'), 60);
   nowDefaults();
   render();
 })();
