@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#c0392b">
+  <title>Дневник давления</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Дневник давления</h1>
+  </header>
+
+  <main>
+    <form id="form" autocomplete="off">
+      <h2 id="formTitle">Новое измерение</h2>
+      <div class="row">
+        <label>Дата <input type="date" id="date" required></label>
+        <label>Время <input type="time" id="time" required></label>
+      </div>
+      <div class="row three">
+        <label>Верхнее <input type="number" id="sys" inputmode="numeric" min="50" max="300" placeholder="120" required></label>
+        <label>Нижнее <input type="number" id="dia" inputmode="numeric" min="30" max="200" placeholder="80" required></label>
+        <label>Пульс <input type="number" id="pulse" inputmode="numeric" min="20" max="250" placeholder="70" required></label>
+      </div>
+      <label>Заметка <textarea id="note" rows="2" placeholder="Что принимал, самочувствие…"></textarea></label>
+      <div class="row btns">
+        <button type="submit" id="save" class="primary">Сохранить</button>
+        <button type="button" id="cancel" class="ghost" hidden>Отмена</button>
+      </div>
+    </form>
+
+    <section id="stats" class="stats" hidden></section>
+    <section id="list"></section>
+
+    <details class="tools">
+      <summary>Резервная копия</summary>
+      <div class="row btns">
+        <button type="button" id="export" class="ghost">Экспорт JSON</button>
+        <label class="ghost filebtn">Импорт JSON <input type="file" id="import" accept="application/json" hidden></label>
+      </div>
+      <p class="hint">Данные хранятся только в этом браузере. Периодически делайте экспорт.</p>
+    </details>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
