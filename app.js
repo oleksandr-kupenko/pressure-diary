@@ -17,6 +17,19 @@
     $('date').value = d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
     $('time').value = pad(d.getHours()) + ':' + pad(d.getMinutes());
   }
+  function normTime(s) {
+    var d = s.replace(/\D/g, '');
+    if (d.length === 3) d = '0' + d;
+    if (d.length === 1 || d.length === 2) d = d.padStart(2, '0') + '00';
+    if (d.length !== 4) return null;
+    var h = +d.slice(0, 2), m = +d.slice(2);
+    if (h > 23 || m > 59) return null;
+    return pad(h) + ':' + pad(m);
+  }
+  function showErr(msg) {
+    $('err').textContent = msg || '';
+    $('err').hidden = !msg;
+  }
   function level(s, d) {
     if (s >= 180 || d >= 120) return 'var(--bad)';
     if (s >= 140 || d >= 90) return 'var(--high)';
@@ -77,12 +90,17 @@
     $('formTitle').textContent = 'Новое измерение';
     $('save').textContent = 'Сохранить';
     $('cancel').hidden = true;
+    showErr('');
   }
 
   $('form').addEventListener('submit', function (ev) {
     ev.preventDefault();
+    var time = normTime($('time').value);
+    if (!time) { showErr('Время: введите часы и минуты, например 1130'); $('time').focus(); return; }
+    if (!$('date').value) { showErr('Выберите дату'); return; }
+    showErr('');
     var data = {
-      date: $('date').value, time: $('time').value,
+      date: $('date').value, time: time,
       sys: +$('sys').value, dia: +$('dia').value, pulse: +$('pulse').value,
       note: $('note').value.trim()
     };
@@ -97,6 +115,11 @@
     render();
   });
 
+  $('time').addEventListener('input', function (ev) {
+    if (ev.inputType && ev.inputType.indexOf('delete') === 0) return;
+    var d = this.value.replace(/\D/g, '').slice(0, 4);
+    this.value = d.length > 2 ? d.slice(0, 2) + ':' + d.slice(2) : d;
+  });
   $('cancel').addEventListener('click', resetForm);
 
   $('list').addEventListener('click', function (ev) {

@@ -56,3 +56,5 @@ button.primary { background: var(--accent); color: #fff; border-color: var(--acc
 .empty, .hint { color: var(--muted); text-align: center; font-size: 14px; }
 .tools summary { cursor: pointer; font-weight: 600; }
 .tools .row { margin-top: 12px; }
+.err { color: var(--bad); font-size: 14px; margin: 0 0 8px; }
+#time { text-align: center; }

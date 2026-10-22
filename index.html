@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#c0392b">
   <title>Дневник давления</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=3">
 </head>
 <body>
   <header>
@@ -17,7 +17,7 @@
       <h2 id="formTitle">Новое измерение</h2>
       <div class="row">
         <label>Дата <input type="date" id="date" required></label>
-        <label>Время <input type="time" id="time" required></label>
+        <label>Время <input type="text" id="time" inputmode="numeric" maxlength="5" placeholder="ЧЧ:ММ" required></label>
       </div>
       <div class="row three">
         <label>Верхнее <input type="number" id="sys" inputmode="numeric" min="50" max="300" placeholder="120" required></label>
@@ -25,6 +25,7 @@
         <label>Пульс <input type="number" id="pulse" inputmode="numeric" min="20" max="250" placeholder="70" required></label>
       </div>
       <label>Заметка <textarea id="note" rows="2" placeholder="Что принимал, самочувствие…"></textarea></label>
+      <p id="err" class="err" role="alert" hidden></p>
       <div class="row btns">
         <button type="submit" id="save" class="primary">Сохранить</button>
         <button type="button" id="cancel" class="ghost" hidden>Отмена</button>
@@ -44,6 +45,6 @@
     </details>
   </main>
 
-  <script src="app.js"></script>
+  <script src="app.js?v=3"></script>
 </body>
 </html>
