@@ -21,7 +21,7 @@ form, .day, .tools, .stats {
   padding: 14px; margin-bottom: 12px;
 }
 label { display: block; font-size: 13px; color: var(--muted); margin-bottom: 10px; }
-input, textarea {
+input, textarea, select {
   display: block; width: 100%; margin-top: 4px; padding: 10px;
   font: inherit; font-size: 16px; color: var(--text); background: var(--bg);
   border: 1px solid var(--line); border-radius: 8px;
@@ -56,3 +56,7 @@ button.primary { background: var(--accent); color: #fff; border-color: var(--acc
 .empty, .hint { color: var(--muted); text-align: center; font-size: 14px; }
 .tools summary { cursor: pointer; font-weight: 600; }
 .tools .row { margin-top: 12px; }
+
+.time-sel { display: flex; align-items: center; gap: 6px; }
+.time-sel select { margin-top: 4px; text-align: center; text-align-last: center; }
+.time-sel b { color: var(--text); font-size: 18px; margin-top: 4px; }

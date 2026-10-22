@@ -17,7 +17,11 @@
       <h2 id="formTitle">Новое измерение</h2>
       <div class="row">
         <label>Дата <input type="date" id="date" required></label>
-        <label>Время <input type="time" id="time" required></label>
+        <label>Время
+          <span class="time-sel">
+            <select id="hour" required></select><b>:</b><select id="min" required></select>
+          </span>
+        </label>
       </div>
       <div class="row three">
         <label>Верхнее <input type="number" id="sys" inputmode="numeric" min="50" max="300" placeholder="120" required></label>
